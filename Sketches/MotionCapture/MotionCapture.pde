@@ -30,6 +30,11 @@ void setup(){
 }
 
 void draw(){
+    //  Reset Animation back to start if end is reached
+    if(currFrame == 684){
+       currFrame = 0; 
+    }
+    
     fill(255);
     
     // Manipulate the shapes
@@ -42,6 +47,11 @@ void draw(){
     
     //  Draw the HUD
     camera.beginHUD();
+    
+    fill(255);
+    textSize(22);
+    
+    text("Current Frame: " + currFrame, width - 220, height - 10);
     
     camera.endHUD();
 }
