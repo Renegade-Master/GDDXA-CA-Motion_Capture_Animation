@@ -10,17 +10,17 @@
 
 void readTable(Table table) {    
     for (TableRow row : table.rows()) {    
-        float id = row.getFloat("Sensor ID");
-        int segment = row.getInt("segment number");
-        float xOrig = row.getFloat("Xorig");
-        float yOrig = row.getFloat("Yorig");
-        float zOrig = row.getFloat("Zorig");
-        float xEnd = row.getFloat("Xend");
-        float yEnd = row.getFloat("Yend");
-        float zEnd = row.getFloat("Zend");
-        float xVect = row.getFloat("Z Vector X Rel Angle");
-        float yVect = row.getFloat("Z Vector Y Rel Angle");
-        float zVect = row.getFloat("Z Vector Z Rel Angle");
+        float id = row.getFloat(0);
+        int segment = row.getInt(1);
+        float xOrig = row.getFloat(2);
+        float yOrig = row.getFloat(3);
+        float zOrig = row.getFloat(4);
+        float xEnd = row.getFloat(5);
+        float yEnd = row.getFloat(6);
+        float zEnd = row.getFloat(7);
+        float xVect = row.getFloat(8);
+        float yVect = row.getFloat(9);
+        float zVect = row.getFloat(10);
             
         println(
             "\nID: " + id
