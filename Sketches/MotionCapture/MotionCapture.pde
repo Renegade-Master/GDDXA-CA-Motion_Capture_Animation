@@ -41,7 +41,6 @@ void setup(){
     }
     
     plyr = new PlayerModel(newMove);
-    plyr.render();
     
     smooth();
     loop();
@@ -57,7 +56,7 @@ void draw(){
     fill(255);
     
     // Manipulate the shapes
-    plyr.setNewPosition(moveTable);
+    plyr.setNextPosition();
     //plyr.setNewPosition(moveTable.getRow(currFrame++));
     
     background(0);
@@ -71,7 +70,7 @@ void draw(){
     fill(255);
     textSize(22);
     
-    text("Current Frame: " + currFrame, width - 220, height - 10);
+    text("Current Frame: " + currFrame++, width - 220, height - 10);
     
     camera.endHUD();
 }

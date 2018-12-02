@@ -10,6 +10,7 @@
 
 public class PlayerModel {
     private Table position;
+    private ArrayList<TableRow> nextAnim; 
     private float scale = 50;
     
     /**
@@ -67,7 +68,33 @@ public class PlayerModel {
     /**
     *   Sets the Animation to a new set of points
     */
-    public void setNewPosition(Table mvTb) {
+    public void setNextPosition() {
+        nextAnim = new ArrayList<TableRow>();
+        
+        println(this.position.getRowCount());
+        
+        for(TableRow row = moveTable.getRow(currFrame * 23); row.getFloat(0) == prevSensor;) {
+            row = moveTable.getRow(segment++);
+            if(row.getFloat(0) != prevSensor){
+                prevSensor = row.getFloat(0);
+                break;
+            }
+            nextAnim.add(row);
+        }
+        
+        this.position.clearRows();
+        println(nextAnim.size());
+        
+        for(TableRow row : nextAnim) {
+            TableRow r = position.addRow();
+            r.setInt("Segment",row.getInt(1));
+            r.setFloat("xOrigin",row.getFloat(2));
+            r.setFloat("yOrigin",row.getFloat(3));
+            r.setFloat("zOrigin",row.getFloat(4));
+            r.setFloat("xEnd",row.getFloat(5));
+            r.setFloat("yEnd",row.getFloat(6));
+            r.setFloat("zEnd",row.getFloat(7));
+        }
         
         /*
         this.position.removeRow(0);
