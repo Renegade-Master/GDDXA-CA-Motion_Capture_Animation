@@ -8,6 +8,7 @@
 |  Read the table  |
 \******************/
 
+
 void readTable(Table table) {    
     for (TableRow row : table.rows()) {    
         float id = row.getFloat(0);

@@ -11,7 +11,10 @@
 public class PlayerModel {
     private Table position;
     
-    PlayerModel(TableRow origPos) {
+    /**
+    *   Constructor uses a set of rows to initally load up the Animation
+    */
+    PlayerModel(ArrayList<TableRow> origPos) {
         position = new Table();
         position.addColumn("Segment",Table.INT);
         position.addColumn("xOrigin",Table.FLOAT);
@@ -21,16 +24,21 @@ public class PlayerModel {
         position.addColumn("yEnd",Table.FLOAT);
         position.addColumn("zEnd",Table.FLOAT);
         
-        TableRow r = position.addRow();
-        r.setInt("Segment",origPos.getInt(1));
-        r.setFloat("xOrigin",origPos.getFloat(2));
-        r.setFloat("yOrigin",origPos.getFloat(3));
-        r.setFloat("zOrigin",origPos.getFloat(4));
-        r.setFloat("xEnd",origPos.getFloat(5));
-        r.setFloat("yEnd",origPos.getFloat(6));
-        r.setFloat("zEnd",origPos.getFloat(7));
+        for(TableRow row : origPos) {
+            TableRow r = position.addRow();
+            r.setInt("Segment",row.getInt(1));
+            r.setFloat("xOrigin",row.getFloat(2));
+            r.setFloat("yOrigin",row.getFloat(3));
+            r.setFloat("zOrigin",row.getFloat(4));
+            r.setFloat("xEnd",row.getFloat(5));
+            r.setFloat("yEnd",row.getFloat(6));
+            r.setFloat("zEnd",row.getFloat(7));
+        }
     }
     
+    /**
+    *   Disply the current animation frame to the screen
+    */
     public void render() {
         for(TableRow r : this.position.rows()) {
             println("Printing out the Character Model...\n");
@@ -38,6 +46,9 @@ public class PlayerModel {
         this.readTable(this.position);
     }
     
+    /**
+    *   Sets the Animation to a new set of points
+    */
     public void setNewPosition(TableRow newPos) {
         this.position.removeRow(0);
         
@@ -51,6 +62,9 @@ public class PlayerModel {
         r.setFloat("zEnd",newPos.getFloat(7));
     }
     
+    /**
+    *   Displays all of the points currently is use by the Animation
+    */
     private void readTable(Table table) {    
         for (TableRow row : table.rows()) {
             int segment = row.getInt(0);

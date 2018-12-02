@@ -14,7 +14,10 @@ private PeasyCam camera;
 private Table moveTable;
 private PlayerModel plyr;
 
+private ArrayList<TableRow> newMove;
 private int currFrame = 0;
+private int strtSeg = 0;
+private int endSeg = 22;
 
 void setup(){
     size(1000, 1000, P3D);
@@ -23,7 +26,14 @@ void setup(){
     
     moveTable = loadTable("movement.csv", "header");
     //readTable(moveTable);
-    plyr = new PlayerModel(moveTable.getRow(0));
+    
+    newMove = new ArrayList<TableRow>(); 
+    while(strtSeg < endSeg) {
+        newMove.add(moveTable.getRow(strtSeg++));   
+    }
+    strtSeg = 0;
+    
+    plyr = new PlayerModel(newMove);
     
     loop();
     frameRate(60);
@@ -38,7 +48,7 @@ void draw(){
     fill(255);
     
     // Manipulate the shapes
-    plyr.setNewPosition(moveTable.getRow(currFrame++));
+    //plyr.setNewPosition(moveTable.getRow(currFrame++));
     
     background(0);
     
