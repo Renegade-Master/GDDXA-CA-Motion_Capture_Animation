@@ -42,6 +42,7 @@ void setup(){
     plyr = new PlayerModel(newMove);
     plyr.render();
     
+    smooth();
     loop();
     frameRate(60);
 }

@@ -48,7 +48,8 @@ public class PlayerModel {
     */
     public void render() {
         println("Printing out the Character Model...\n");
-        stroke(255, 0,0);
+        stroke(random(0, 255), random(0, 255), random(0, 255));
+        strokeWeight(5);
         for(TableRow r : this.position.rows()) {
             line(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale,r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
         }
