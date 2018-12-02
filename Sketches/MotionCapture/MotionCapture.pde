@@ -34,6 +34,7 @@ void setup(){
     for(TableRow row = moveTable.getRow(0); row.getFloat(0) == prevSensor;) {
         row = moveTable.getRow(segment++);
         if(row.getFloat(0) != prevSensor){
+            prevSensor = row.getFloat(0);
             break;
         }
         newMove.add(row);
@@ -56,6 +57,7 @@ void draw(){
     fill(255);
     
     // Manipulate the shapes
+    plyr.setNewPosition(moveTable);
     //plyr.setNewPosition(moveTable.getRow(currFrame++));
     
     background(0);

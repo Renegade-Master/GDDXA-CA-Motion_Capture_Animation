@@ -48,10 +48,18 @@ public class PlayerModel {
     */
     public void render() {
         println("Printing out the Character Model...\n");
-        stroke(random(0, 255), random(0, 255), random(0, 255));
         strokeWeight(5);
         for(TableRow r : this.position.rows()) {
+            stroke(255,255,255);
             line(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale,r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
+            
+            stroke(255,0,0);
+            translate(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale);
+            sphere(1);
+            translate(-r.getFloat(1) * scale,-r.getFloat(2) * scale,-r.getFloat(3) * scale);
+            translate(r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
+            sphere(1);
+            translate(-r.getFloat(4) * scale,-r.getFloat(5) * scale,-r.getFloat(6) * scale);
         }
         //this.readTable(this.position);
     }
@@ -59,7 +67,9 @@ public class PlayerModel {
     /**
     *   Sets the Animation to a new set of points
     */
-    public void setNewPosition(ArrayList<TableRow> newPos) {
+    public void setNewPosition(Table mvTb) {
+        
+        /*
         this.position.removeRow(0);
         
         for(TableRow row : newPos) {
@@ -72,6 +82,7 @@ public class PlayerModel {
             r.setFloat("yEnd",row.getFloat(6));
             r.setFloat("zEnd",row.getFloat(7));
         }
+        */
     }
     
     /**
