@@ -10,6 +10,7 @@
 
 public class PlayerModel {
     private Table position;
+    private float scale = 50;
     
     /**
     *   Constructor uses a set of rows to initally load up the Animation
@@ -47,10 +48,11 @@ public class PlayerModel {
     */
     public void render() {
         println("Printing out the Character Model...\n");
+        stroke(255, 0,0);
         for(TableRow r : this.position.rows()) {
-        
+            line(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale,r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
         }
-        this.readTable(this.position);
+        //this.readTable(this.position);
     }
     
     /**

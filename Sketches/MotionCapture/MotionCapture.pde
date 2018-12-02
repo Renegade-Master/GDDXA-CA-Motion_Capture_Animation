@@ -21,7 +21,7 @@ private float prevSensor = 0.0;
 
 void setup(){
     size(1000, 1000, P3D);
-    camera = new PeasyCam(this, 0, 0, 0, 2000);
+    camera = new PeasyCam(this, 0, 0, 0, 2);
     camera.setSuppressRollRotationMode();
     
     moveTable = loadTable("movement.csv", "header");
@@ -60,7 +60,7 @@ void draw(){
     background(0);
     
     // Draw the Shapes
-    //plyr.render();
+    plyr.render();
     
     //  Draw the HUD
     camera.beginHUD();
