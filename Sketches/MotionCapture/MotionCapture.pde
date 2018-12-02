@@ -16,8 +16,8 @@ private PlayerModel plyr;
 
 private ArrayList<TableRow> newMove;
 private int currFrame = 0;
-private int strtSeg = 0;
-private int endSeg = 22;
+private int segment = 0;
+private float prevSensor = 0.0;
 
 void setup(){
     size(1000, 1000, P3D);
@@ -27,13 +27,20 @@ void setup(){
     moveTable = loadTable("movement.csv", "header");
     //readTable(moveTable);
     
-    newMove = new ArrayList<TableRow>(); 
-    while(strtSeg < endSeg) {
-        newMove.add(moveTable.getRow(strtSeg++));   
+    newMove = new ArrayList<TableRow>();
+    
+    prevSensor = moveTable.getRow(0).getFloat(0);
+    println(prevSensor);
+    for(TableRow row = moveTable.getRow(0); row.getFloat(0) == prevSensor;) {
+        row = moveTable.getRow(segment++);
+        if(row.getFloat(0) != prevSensor){
+            break;
+        }
+        newMove.add(row);
     }
-    strtSeg = 0;
     
     plyr = new PlayerModel(newMove);
+    plyr.render();
     
     loop();
     frameRate(60);
@@ -53,7 +60,7 @@ void draw(){
     background(0);
     
     // Draw the Shapes
-    plyr.render();
+    //plyr.render();
     
     //  Draw the HUD
     camera.beginHUD();

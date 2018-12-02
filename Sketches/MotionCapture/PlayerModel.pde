@@ -16,6 +16,8 @@ public class PlayerModel {
     */
     PlayerModel(ArrayList<TableRow> origPos) {
         position = new Table();
+        
+        //  Add Column Headers and Data Types
         position.addColumn("Segment",Table.INT);
         position.addColumn("xOrigin",Table.FLOAT);
         position.addColumn("yOrigin",Table.FLOAT);
@@ -24,7 +26,40 @@ public class PlayerModel {
         position.addColumn("yEnd",Table.FLOAT);
         position.addColumn("zEnd",Table.FLOAT);
         
+        //  Add (Hopefully) 23 Rows to the Table
         for(TableRow row : origPos) {
+            TableRow r = position.addRow();
+            r.setInt("Segment",row.getInt(1));
+            r.setFloat("xOrigin",row.getFloat(2));
+            r.setFloat("yOrigin",row.getFloat(3));
+            r.setFloat("zOrigin",row.getFloat(4));
+            r.setFloat("xEnd",row.getFloat(5));
+            r.setFloat("yEnd",row.getFloat(6));
+            r.setFloat("zEnd",row.getFloat(7));
+        }
+        
+        //  Save the Table for debugging purposes
+        saveTable(position, "data/initialPlayerPosition.csv");
+    }
+    
+    /**
+    *   Disply the current animation frame to the screen
+    */
+    public void render() {
+        println("Printing out the Character Model...\n");
+        for(TableRow r : this.position.rows()) {
+        
+        }
+        this.readTable(this.position);
+    }
+    
+    /**
+    *   Sets the Animation to a new set of points
+    */
+    public void setNewPosition(ArrayList<TableRow> newPos) {
+        this.position.removeRow(0);
+        
+        for(TableRow row : newPos) {
             TableRow r = position.addRow();
             r.setInt("Segment",row.getInt(1));
             r.setFloat("xOrigin",row.getFloat(2));
@@ -37,33 +72,7 @@ public class PlayerModel {
     }
     
     /**
-    *   Disply the current animation frame to the screen
-    */
-    public void render() {
-        for(TableRow r : this.position.rows()) {
-            println("Printing out the Character Model...\n");
-        }
-        this.readTable(this.position);
-    }
-    
-    /**
-    *   Sets the Animation to a new set of points
-    */
-    public void setNewPosition(TableRow newPos) {
-        this.position.removeRow(0);
-        
-        TableRow r = position.addRow();
-        r.setInt("Segment",newPos.getInt(1));
-        r.setFloat("xOrigin",newPos.getFloat(2));
-        r.setFloat("yOrigin",newPos.getFloat(3));
-        r.setFloat("zOrigin",newPos.getFloat(4));
-        r.setFloat("xEnd",newPos.getFloat(5));
-        r.setFloat("yEnd",newPos.getFloat(6));
-        r.setFloat("zEnd",newPos.getFloat(7));
-    }
-    
-    /**
-    *   Displays all of the points currently is use by the Animation
+    *   Displays all of the points currently in use by the Animation
     */
     private void readTable(Table table) {    
         for (TableRow row : table.rows()) {
