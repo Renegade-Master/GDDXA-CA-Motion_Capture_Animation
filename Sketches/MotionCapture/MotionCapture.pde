@@ -21,7 +21,10 @@ private float prevSensor = 0.0;
 
 void setup(){
     size(1000, 1000, P3D);
-    camera = new PeasyCam(this, 0, 0, 0, 2);
+    camera = new PeasyCam(this, -25, 0, 50, 150);
+    camera.rotateX(1.6);
+    camera.rotateY(-0.2);
+    camera.rotateZ(-3.0);
     camera.setSuppressRollRotationMode();
     
     moveTable = loadTable("movement.csv", "header");
