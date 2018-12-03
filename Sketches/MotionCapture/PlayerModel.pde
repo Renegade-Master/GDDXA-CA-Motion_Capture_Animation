@@ -1,7 +1,8 @@
 /**
 *   @author         Ciaran Bent [K00221230]
 *   @creationDate   2018/11/27  YYYY/MM/DD
-*   @description    This file contains the PlayerModel Class that I will use to handle my scene
+*   @description    This file contains the PlayerModel Class
+*                   that I will use to handle my scene
 */
 
 /**********************\
@@ -51,7 +52,8 @@ public class PlayerModel {
         println("Printing out the Character Model...\n");
         strokeWeight(5);
         for(TableRow r : this.position.rows()) {
-            stroke(255,255,255);
+            //stroke(255,255,255);
+            stroke(random(0, 255),random(0, 255),random(0, 255));
             line(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale,r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
             
             stroke(255,0,0);
