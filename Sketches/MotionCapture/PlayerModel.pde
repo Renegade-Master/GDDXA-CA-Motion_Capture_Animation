@@ -75,7 +75,8 @@ public class PlayerModel {
         
         for(TableRow row = moveTable.getRow(currFrame * 23); row.getFloat(0) == prevSensor;) {
             row = moveTable.getRow(segment++);
-            if(row.getFloat(0) != prevSensor){               prevSensor = row.getFloat(0);
+            if(row.getFloat(0) != prevSensor) {
+                prevSensor = row.getFloat(0);
                 break;
             }
             nextAnim.add(row);
