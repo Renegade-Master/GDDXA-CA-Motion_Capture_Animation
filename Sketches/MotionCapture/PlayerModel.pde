@@ -95,21 +95,6 @@ public class PlayerModel {
             r.setFloat("yEnd",row.getFloat(6));
             r.setFloat("zEnd",row.getFloat(7));
         }
-        
-        /*
-        this.position.removeRow(0);
-        
-        for(TableRow row : newPos) {
-            TableRow r = position.addRow();
-            r.setInt("Segment",row.getInt(1));
-            r.setFloat("xOrigin",row.getFloat(2));
-            r.setFloat("yOrigin",row.getFloat(3));
-            r.setFloat("zOrigin",row.getFloat(4));
-            r.setFloat("xEnd",row.getFloat(5));
-            r.setFloat("yEnd",row.getFloat(6));
-            r.setFloat("zEnd",row.getFloat(7));
-        }
-        */
     }
     
     /**
