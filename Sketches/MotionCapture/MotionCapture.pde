@@ -20,7 +20,7 @@ private int segment = 0;
 private float prevSensor = 0.0;
 
 void setup(){
-    size(1000, 1000, P3D);
+    size(720, 720, P3D);
     camera = new PeasyCam(this, -25, 0, 50, 150);
     camera.rotateX(1.6);
     camera.rotateY(-0.2);
@@ -47,19 +47,19 @@ void setup(){
     
     smooth();
     loop();
-    frameRate(60);
+    frameRate(120);
 }
 
 void draw(){
     //  Reset Animation back to start if end is reached
-    if(currFrame == 684){
+    if(currFrame == 683){
        currFrame = 0; 
     }
     
     fill(255);
     
     // Manipulate the shapes
-    plyr.setNextPosition();
+    plyr.setNextPosition(currFrame);
     //plyr.setNewPosition(moveTable.getRow(currFrame++));
     
     background(0);

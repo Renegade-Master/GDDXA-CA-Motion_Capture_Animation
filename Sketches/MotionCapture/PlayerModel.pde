@@ -50,11 +50,16 @@ public class PlayerModel {
     */
     public void render() {
         println("Printing out the Character Model...\n");
+        stroke(random(0, 255),random(0, 255),random(0, 255));
+        line(this.position.getRow(0).getFloat(1) * scale,this.position.getRow(0).getFloat(2) * scale,this.position.getRow(0).getFloat(3) * scale,
+             this.position.getRow(11).getFloat(4) * scale,this.position.getRow(11).getFloat(5) * scale,this.position.getRow(11).getFloat(6) * scale);
+        
         strokeWeight(5);
         for(TableRow r : this.position.rows()) {
             //stroke(255,255,255);
             stroke(random(0, 255),random(0, 255),random(0, 255));
-            line(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale,r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
+            line(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale,
+                 r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
             
             stroke(255,0,0);
             translate(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale);
@@ -70,7 +75,7 @@ public class PlayerModel {
     /**
     *   Sets the Animation to a new set of points
     */
-    public void setNextPosition() {
+    public void setNextPosition(int currFrame) {
         nextAnim = new ArrayList<TableRow>();
         
         println(this.position.getRowCount());
