@@ -50,17 +50,17 @@ public class PlayerModel {
     */
     public void render() {
         println("Printing out the Character Model...\n");
-        stroke(random(0, 255),random(0, 255),random(0, 255));
+        //stroke(random(0, 255),random(0, 255),random(0, 255));
         println("Rows in Plyr Table during Render(): " + this.position.getRowCount());
-        TableRow r1 = this.position.getRow(0);
-        TableRow r2 = this.position.getRow(11);
-        line(r1.getFloat(1) * scale,r1.getFloat(2) * scale,r1.getFloat(3) * scale,
-             r2.getFloat(4) * scale,r2.getFloat(5) * scale,r2.getFloat(6) * scale);
+        //TableRow r1 = this.position.getRow(0);
+        //TableRow r2 = this.position.getRow(11);
+        //line(r1.getFloat(1) * scale,r1.getFloat(2) * scale,r1.getFloat(3) * scale,
+         //    r2.getFloat(4) * scale,r2.getFloat(5) * scale,r2.getFloat(6) * scale);
         
         strokeWeight(5);
         for(TableRow r : this.position.rows()) {
-            //stroke(255,255,255);
-            stroke(random(0, 255),random(0, 255),random(0, 255));
+            stroke(255,255,255);
+            //stroke(random(0, 255),random(0, 255),random(0, 255));
             line(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale,
                  r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
             
@@ -92,18 +92,18 @@ public class PlayerModel {
             nextAnim.add(row);
         }
         
-        //this.position.clearRows();
+        this.position.clearRows();
         println("Rows in next Animation: " + nextAnim.size());
         int s = 0;
         for(TableRow row : nextAnim) {
-            //TableRow r = position.addRow();
-            position.getRow(s).setInt("Segment",row.getInt(1));
-            position.getRow(s).setFloat("xOrigin",row.getFloat(2));
-            position.getRow(s).setFloat("yOrigin",row.getFloat(3));
-            position.getRow(s).setFloat("zOrigin",row.getFloat(4));
-            position.getRow(s).setFloat("xEnd",row.getFloat(5));
-            position.getRow(s).setFloat("yEnd",row.getFloat(6));
-            position.getRow(s).setFloat("zEnd",row.getFloat(7));
+            TableRow r = position.addRow();
+            r.setInt("Segment",row.getInt(1));
+            r.setFloat("xOrigin",row.getFloat(2));
+            r.setFloat("yOrigin",row.getFloat(3));
+            r.setFloat("zOrigin",row.getFloat(4));
+            r.setFloat("xEnd",row.getFloat(5));
+            r.setFloat("yEnd",row.getFloat(6));
+            r.setFloat("zEnd",row.getFloat(7));
             s++;
         }
     }
