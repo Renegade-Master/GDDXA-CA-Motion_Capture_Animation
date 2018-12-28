@@ -11,13 +11,13 @@
 
 public class PlayerModel {
     private Table position;
-    private ArrayList<TableRow> nextAnim; 
+    private Table nextAnim; 
     private float scale = 50;
     
     /**
     *   Constructor uses a set of rows to initally load up the Animation
     */
-    PlayerModel(ArrayList<TableRow> origPos) {
+    PlayerModel(Table origPos) {
         position = new Table();
         
         //  Add Column Headers and Data Types
@@ -30,7 +30,7 @@ public class PlayerModel {
         position.addColumn("zEnd",Table.FLOAT);
         
         //  Add (Hopefully) 23 Rows to the Table
-        for(TableRow row : origPos) {
+        for(TableRow row : origPos.rows()) {
             TableRow r = position.addRow();
             r.setInt("Segment",row.getInt(1));
             r.setFloat("xOrigin",row.getFloat(2));
@@ -78,10 +78,12 @@ public class PlayerModel {
     /**
     *   Sets the Animation to a new set of points
     */
-    public void setNextPosition(int currFrame) {
-        nextAnim = new ArrayList<TableRow>();
+    public void setNextPosition(int currFrame) {        
+        // Create a new table to store the 
+        nextAnim = new Table();
         
         println("Rows in Plyr Table: " + this.position.getRowCount());
+        
         
         for(TableRow row = moveTable.getRow(currFrame * 23); row.getFloat(0) == prevSensor;) {
             row = moveTable.getRow(segment++);
@@ -89,13 +91,13 @@ public class PlayerModel {
                 prevSensor = row.getFloat(0);
                 break;
             }
-            nextAnim.add(row);
+            nextAnim.addRow(row);
         }
         
         this.position.clearRows();
-        println("Rows in next Animation: " + nextAnim.size());
+        println("Rows in next Animation: " + nextAnim.rows());
         int s = 0;
-        for(TableRow row : nextAnim) {
+        for(TableRow row : nextAnim.rows()) {
             TableRow r = position.addRow();
             r.setInt("Segment",row.getInt(1));
             r.setFloat("xOrigin",row.getFloat(2));
