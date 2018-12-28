@@ -75,13 +75,13 @@ public class PlayerModel {
     *   Sets the Animation to a new set of points
     */
     public void setNextPosition(int frame) {
+        // Reset the animation if the end has been reached
         if(prevSensor == 10582.47488) {
             prevSensor = 10576.775;
         }
         
         dataRow = frame * 23;
-        //println(this.position.getRowCount());
-        this.toString();
+        //this.toString();
         this.nextAnim = new Table();
         this.position.clearRows();        
         

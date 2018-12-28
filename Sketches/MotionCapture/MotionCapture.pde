@@ -15,8 +15,8 @@ private Table moveTable;
 private PlayerModel plyr;
 
 private Table newMove;
-private int currFrame = 0; // 684 Frames in total
-private int dataRow = 0;   // 23 segments in each Frame
+private int currFrame = 0; // 684 frames in total
+private int dataRow = 0;   // 15732 rows in total
 private float prevSensor = 0.0;
 
 void setup(){
@@ -33,7 +33,7 @@ void setup(){
     newMove = new Table();
     
     // Extract first SensorID
-    prevSensor = moveTable.getRow(0).getFloat(0);
+    prevSensor = moveTable.getRow(dataRow).getFloat(0);
     
     // Add all rows that are assigned to the same SensorID
     for(TableRow row = moveTable.getRow(0); row.getFloat(0) == prevSensor;) {
@@ -78,7 +78,7 @@ void draw(){
     fill(255);
     textSize(22);
     
-    text("Current Frame: " + (currFrame - 1), width - 220, height - 10);
+    text("Current Frame: " + (currFrame), width - 220, height - 10);
     
     text("Data Row: " + dataRow, width - 220, height - 30);
     
