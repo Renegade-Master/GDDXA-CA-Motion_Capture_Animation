@@ -16,7 +16,7 @@ private PlayerModel plyr;
 
 private Table newMove;
 private int currFrame = 0; // 684 Frames in total
-private int segment = 0;   // 23 segments in each frame
+private int dataRow = 0;   // 23 segments in each Frame
 private float prevSensor = 0.0;
 
 void setup(){
@@ -37,7 +37,7 @@ void setup(){
     
     // Add all rows that are assigned to the same SensorID
     for(TableRow row = moveTable.getRow(0); row.getFloat(0) == prevSensor;) {
-        row = moveTable.getRow(segment++);
+        row = moveTable.getRow(dataRow++);
         if(row.getFloat(0) != prevSensor){
             prevSensor = row.getFloat(0);
             break;
@@ -57,27 +57,21 @@ void draw(){
     //  Reset Animation back to start if end is reached
     if(currFrame == 683){
        currFrame = 0;
-       segment = 0;
     }
     
     fill(255);
-    /****               ****\
-    * Manipulate the shapes *
-    \****               ****/
-    
-    plyr.setNextPosition(currFrame++);
     
     background(0);
     
-    /****         ****\
+    /****---------****\
     * Draw the shapes *
-    \****         ****/
+    \****---------****/
     
     plyr.render();
     
-    /****      ****\
+    /****------****\
     * Draw the HUD *
-    \****      ****/
+    \****------****/
     
     camera.beginHUD();
     
@@ -86,7 +80,13 @@ void draw(){
     
     text("Current Frame: " + (currFrame - 1), width - 220, height - 10);
     
-    text("Segment: " + segment, width - 220, height - 30);
+    text("Data Row: " + dataRow, width - 220, height - 30);
     
     camera.endHUD();
+        
+    /****---------------****\
+    * Manipulate the shapes *
+    \****---------------****/
+    
+    plyr.setNextPosition(currFrame++);
 }

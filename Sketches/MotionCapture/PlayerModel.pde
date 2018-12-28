@@ -10,9 +10,9 @@
 \**********************/
 
 public class PlayerModel {
-    private Table position;
-    private Table nextAnim; 
-    private float scale = 50;
+    private Table position;    // The current frame
+    private Table nextAnim;    // The next frame
+    private float scale = 50;  // Increase the size of the Player Model for displaying
     
     /**
     *   Constructor uses a set of rows to initally load up the Animation
@@ -49,13 +49,8 @@ public class PlayerModel {
     *   Disply the current animation frame to the screen
     */
     public void render() {
-        println("Printing out the Character Model...\n");
-        //stroke(random(0, 255),random(0, 255),random(0, 255));
-        println("Rows in Plyr Table during Render(): " + this.position.getRowCount());
-        //TableRow r1 = this.position.getRow(0);
-        //TableRow r2 = this.position.getRow(11);
-        //line(r1.getFloat(1) * scale,r1.getFloat(2) * scale,r1.getFloat(3) * scale,
-         //    r2.getFloat(4) * scale,r2.getFloat(5) * scale,r2.getFloat(6) * scale);
+        //println("Printing out the Character Model...\n");
+        //println("Rows in Plyr Table during Render(): " + this.position.getRowCount());
         
         strokeWeight(5);
         for(TableRow r : this.position.rows()) {
@@ -78,26 +73,24 @@ public class PlayerModel {
     /**
     *   Sets the Animation to a new set of points
     */
-    public void setNextPosition(int currFrame) {        
-        // Create a new table to store the 
+    public void setNextPosition(int currFrame) {
+        dataRow = currFrame * 23;
         nextAnim = new Table();
+        this.position.clearRows();        
         
-        println("Rows in Plyr Table: " + this.position.getRowCount());
-        
-        
-        for(TableRow row = moveTable.getRow(currFrame * 23); row.getFloat(0) == prevSensor;) {
-            row = moveTable.getRow(segment++);
+        // Isolate the next frame
+        for(TableRow row = moveTable.getRow(dataRow); row.getFloat(0) == prevSensor; dataRow++) {
+            row = moveTable.getRow(dataRow);
+            //println("Value of dataRow during Render(): " + dataRow);
             if(row.getFloat(0) != prevSensor) {
                 prevSensor = row.getFloat(0);
                 break;
             }
             nextAnim.addRow(row);
         }
+        //println("Rows in next Animation: " + this.nextAnim.getRowCount());
         
-        this.position.clearRows();
-        println("Rows in next Animation: " + nextAnim.rows());
-        int s = 0;
-        for(TableRow row : nextAnim.rows()) {
+        for(TableRow row : this.nextAnim.rows()) {
             TableRow r = position.addRow();
             r.setInt("Segment",row.getInt(1));
             r.setFloat("xOrigin",row.getFloat(2));
@@ -106,8 +99,9 @@ public class PlayerModel {
             r.setFloat("xEnd",row.getFloat(5));
             r.setFloat("yEnd",row.getFloat(6));
             r.setFloat("zEnd",row.getFloat(7));
-            s++;
         }
+        
+        this.nextAnim.clearRows();
     }
     
     /**
@@ -135,16 +129,3 @@ public class PlayerModel {
         }
     }
 }
-
-/*
-float[][][] newPos =
-{ //  Segment * 23
-    { //  Origin
-        {0,0,0}
-    },
-    { //  End
-        {1,1,1}
-    }
-    
-};
-*/
