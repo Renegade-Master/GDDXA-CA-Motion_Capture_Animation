@@ -18,20 +18,21 @@ public class PlayerModel {
     *   Constructor uses a set of rows to initally load up the Animation
     */
     PlayerModel(Table origPos) {
-        position = new Table();
+        this.position = new Table();
+        this.nextAnim = null;
         
         //  Add Column Headers and Data Types
-        position.addColumn("Segment",Table.INT);
-        position.addColumn("xOrigin",Table.FLOAT);
-        position.addColumn("yOrigin",Table.FLOAT);
-        position.addColumn("zOrigin",Table.FLOAT);
-        position.addColumn("xEnd",Table.FLOAT);
-        position.addColumn("yEnd",Table.FLOAT);
-        position.addColumn("zEnd",Table.FLOAT);
+        this.position.addColumn("Segment",Table.INT);
+        this.position.addColumn("xOrigin",Table.FLOAT);
+        this.position.addColumn("yOrigin",Table.FLOAT);
+        this.position.addColumn("zOrigin",Table.FLOAT);
+        this.position.addColumn("xEnd",Table.FLOAT);
+        this.position.addColumn("yEnd",Table.FLOAT);
+        this.position.addColumn("zEnd",Table.FLOAT);
         
         //  Add (Hopefully) 23 Rows to the Table
         for(TableRow row : origPos.rows()) {
-            TableRow r = position.addRow();
+            TableRow r = this.position.addRow();
             r.setInt("Segment",row.getInt(1));
             r.setFloat("xOrigin",row.getFloat(2));
             r.setFloat("yOrigin",row.getFloat(3));
@@ -42,7 +43,7 @@ public class PlayerModel {
         }
         
         //  Save the Table for debugging purposes
-        saveTable(position, "data/initialPlayerPosition.csv");
+        saveTable(this.position, "data/initialPlayerPosition.csv");
     }
     
     /**
@@ -73,9 +74,15 @@ public class PlayerModel {
     /**
     *   Sets the Animation to a new set of points
     */
-    public void setNextPosition(int currFrame) {
-        dataRow = currFrame * 23;
-        nextAnim = new Table();
+    public void setNextPosition(int frame) {
+        if(prevSensor == 10582.47488) {
+            prevSensor = 10576.775;
+        }
+        
+        dataRow = frame * 23;
+        //println(this.position.getRowCount());
+        this.toString();
+        this.nextAnim = new Table();
         this.position.clearRows();        
         
         // Isolate the next frame
@@ -86,12 +93,12 @@ public class PlayerModel {
                 prevSensor = row.getFloat(0);
                 break;
             }
-            nextAnim.addRow(row);
+            this.nextAnim.addRow(row);
         }
         //println("Rows in next Animation: " + this.nextAnim.getRowCount());
         
         for(TableRow row : this.nextAnim.rows()) {
-            TableRow r = position.addRow();
+            TableRow r = this.position.addRow();
             r.setInt("Segment",row.getInt(1));
             r.setFloat("xOrigin",row.getFloat(2));
             r.setFloat("yOrigin",row.getFloat(3));
@@ -107,8 +114,8 @@ public class PlayerModel {
     /**
     *   Displays all of the points currently in use by the Animation
     */
-    private void readTable(Table table) {    
-        for (TableRow row : table.rows()) {
+    public String toString() {    
+        for (TableRow row : this.position.rows()) {
             int segment = row.getInt(0);
             float xOrig = row.getFloat(1);
             float yOrig = row.getFloat(2);
@@ -127,5 +134,8 @@ public class PlayerModel {
               + "\nEnd Z: " + zEnd
             );
         }
+        
+        //  Lazy patch
+        return(null);
     }
 }
