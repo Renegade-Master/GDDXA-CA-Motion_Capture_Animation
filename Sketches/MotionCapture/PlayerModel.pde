@@ -76,8 +76,8 @@ public class PlayerModel {
     */
     public void setNextPosition(int frame) {
         // Reset the animation if the end has been reached
-        if(prevSensor == 10582.47488) {
-            prevSensor = 10576.775;
+        if(prevSensor == 10581.73325) { // 10582.47488 is DEFAULT last SensorID
+            prevSensor = 10577.33325;     // 10576.775 is DEFAULT first SensorID
         }
         
         dataRow = frame * 23;

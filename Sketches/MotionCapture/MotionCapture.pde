@@ -15,12 +15,12 @@ private Table moveTable;
 private PlayerModel plyr;
 
 private Table newMove;
-private int currFrame = 0; // 684 frames in total
-private int dataRow = 0;   // 15732 rows in total
+private int currFrame = 66; // 684 frames in total; 0 is DEFAULT
+private int dataRow = 1519;   // 15732 rows in total; 0 is DEFAULT
 private float prevSensor = 0.0;
 
-void setup(){
-    size(720, 720, P3D);
+void setup() {
+    size(720, 720, P3D); 
     camera = new PeasyCam(this, -25, 0, 50, 150);
     camera.rotateX(1.6);
     camera.rotateY(-0.2);
@@ -55,8 +55,8 @@ void setup(){
 
 void draw(){
     //  Reset Animation back to start if end is reached
-    if(currFrame == 683){
-       currFrame = 0;
+    if(currFrame == 594){ // 683 is DEFAULT last frame
+       currFrame = 66;    // 0 is DEFAULT first frame
     }
     
     fill(255);
