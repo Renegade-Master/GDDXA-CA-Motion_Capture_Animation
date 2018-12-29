@@ -8,8 +8,10 @@
 |  PROGRAM CODE  |
 \****************/
 
+import controlP5.*;
 import peasy.*;
 
+private ControlP5 gui;
 private PeasyCam camera;
 private Table moveTable;
 private PlayerModel plyr;
@@ -20,8 +22,12 @@ private int currFrame = 0;       // 684 Frames in TOTAL;          0 is FIRST;   
 private int dataRow = 0;         // 15732 Data Rows in TOTAL;     0 is FIRST;         0 is DEFAULT
 private float prevSensor = 0.0;  // 10582.47488 is LAST SensorID; 10576.775 is FIRST; 0 is DEFAULT
 
+// User Interface buttons
+private Toggle tgl_pause;
+
 void setup() {
-    size(720, 720, P3D); 
+    size(720, 720, P3D);
+    gui = new ControlP5(this);
     camera = new PeasyCam(this, -25, 0, 50, 150);
     camera.rotateX(1.6);
     camera.rotateY(-0.2);
@@ -48,6 +54,14 @@ void setup() {
     
     // Init the Player obj with the first frame
     plyr = new PlayerModel(newMove);
+    
+    // Create the Graphical User Interface
+    //tgl_pause = new Toggle(gui,null,"tgl_pause",0.0,0.0,0.0,20,20);
+    //gui.addToggle("tgl_pause",0.0,0.0,20,20);
+    gui.addToggle("toggleValue")
+        .setPosition(40,100)
+        .setSize(50,20);
+    
     
     smooth();
     loop();
@@ -77,10 +91,11 @@ void draw(){
     camera.beginHUD();
     
     fill(255);
-    textSize(22);
     
-    text("Current Frame: " + (currFrame), width - 220, height - 10);
-    
+    //tgl_pause.draw(null);
+        
+    textSize(22);    
+    text("Current Frame: " + (currFrame), width - 220, height - 10);    
     text("Data Row: " + dataRow, width - 220, height - 30);
     
     camera.endHUD();
@@ -91,11 +106,11 @@ void draw(){
     
     plyr.setNextPosition(currFrame++);
 }
-
+/*
 void mousePressed() { 
     noLoop();
 } 
 
 void mouseReleased() { 
     loop();
-}
+}*/
