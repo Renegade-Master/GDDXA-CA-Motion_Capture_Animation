@@ -80,13 +80,13 @@ public class PlayerModel {
             prevSensor = 10577.33325;     // 10576.775 is DEFAULT first SensorID
         }
         
-        dataRow = frame * 23;
+        dataRow = abs(frame * 23);
         //this.toString();
         this.nextAnim = new Table();
         this.position.clearRows();        
         
         // Isolate the next frame
-        for(TableRow row = moveTable.getRow(dataRow); row.getFloat(0) == prevSensor; dataRow++) {
+        for(TableRow row = moveTable.getRow(dataRow); row.getFloat(0) == prevSensor;) {
             row = moveTable.getRow(dataRow);
             //println("Value of dataRow during Render(): " + dataRow);
             if(row.getFloat(0) != prevSensor) {
@@ -94,6 +94,12 @@ public class PlayerModel {
                 break;
             }
             this.nextAnim.addRow(row);
+            
+            if(forwards) {
+                dataRow++;
+            }else {
+                dataRow--;
+            }
         }
         //println("Rows in next Animation: " + this.nextAnim.getRowCount());
         

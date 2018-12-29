@@ -21,9 +21,11 @@ private Table newMove;
 private int currFrame = 0;       // 684 Frames in TOTAL;          0 is FIRST;         0 is DEFAULT
 private int dataRow = 0;         // 15732 Data Rows in TOTAL;     0 is FIRST;         0 is DEFAULT
 private float prevSensor = 0.0;  // 10582.47488 is LAST SensorID; 10576.775 is FIRST; 0 is DEFAULT
+private boolean forwards = true;
+private float fRate = 30;
 
 // User Interface buttons
-private Toggle tgl_pause;
+//private Toggle tgl_pause;
 
 void setup() {
     size(720, 720, P3D);
@@ -58,17 +60,17 @@ void setup() {
     // Create the Graphical User Interface
     //tgl_pause = new Toggle(gui,null,"tgl_pause",0.0,0.0,0.0,20,20);
     //gui.addToggle("tgl_pause",0.0,0.0,20,20);
-    gui.addToggle("toggleValue")
-        .setPosition(40,100)
-        .setSize(50,20);
+    //gui.addToggle("toggleValue")
+    //    .setPosition(40,100)
+    //    .setSize(50,20);
     
     
     smooth();
     loop();
-    frameRate(120);
+    frameRate(fRate);
 }
 
-void draw(){
+void draw() {
     //  Reset Animation back to start if end is reached
     if(currFrame == 594){ // 683 is DEFAULT last frame
        currFrame = 66;    // 0 is DEFAULT first frame
@@ -93,7 +95,7 @@ void draw(){
     fill(255);
     
     //tgl_pause.draw(null);
-        
+
     textSize(22);    
     text("Current Frame: " + (currFrame), width - 220, height - 10);    
     text("Data Row: " + dataRow, width - 220, height - 30);
@@ -104,7 +106,35 @@ void draw(){
     * Manipulate the shapes *
     \****---------------****/
     
-    plyr.setNextPosition(currFrame++);
+    if(forwards) {
+        plyr.setNextPosition(currFrame++);
+    }else {
+        plyr.setNextPosition(currFrame--);
+    }
+}
+
+void keyPressed() {
+    //println(key);
+    
+    switch(key) {
+        case 'a':
+            
+            break;
+        case 'z':
+            
+            break;
+    }
+    
+    switch(key) {
+        case 'a':
+            frameRate(fRate += 1.0);
+            break;
+        case 'z':
+            if(fRate > 0) {
+                frameRate(fRate -= 1.0);
+            }
+            break;
+    }
 }
 /*
 void mousePressed() { 
