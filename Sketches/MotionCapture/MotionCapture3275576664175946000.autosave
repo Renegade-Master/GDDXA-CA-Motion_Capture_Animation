@@ -16,7 +16,7 @@ private PlayerModel plyr;
 private Table newMove;
 
 // Global Variables
-private int currFrame = 0;       // 684 Frames in TOTAL;          0 is FIRST;         0 is DEFAULT
+privae int currFrame = 0;       // 684 Frames in TOTAL;          0 is FIRST;         0 is DEFAULT
 private int dataRow = 0;         // 15732 Data Rows in TOTAL;     0 is FIRST;         0 is DEFAULT
 private float prevSensor = 0.0;  // 10582.47488 is LAST SensorID; 10576.775 is FIRST; 0 is DEFAULT
 
@@ -57,7 +57,8 @@ void setup() {
 void draw(){
     //  Reset Animation back to start if end is reached
     if(currFrame == 594){ // 683 is DEFAULT last frame
-       currFrame = 66;    // 0 is DEFAULT first frame
+
+       currFrame = 66;       currFrame = 66;    // 0 is DEFAULT first frame
     }
     
     fill(255);
@@ -93,9 +94,12 @@ void draw(){
 }
 
 void mousePressed() { 
-    noLoop();
-} 
-
+  n//oLoop(); 
+ 
+currFrame = currFrame;
+  dataRow = dataRow;
+  prevSensor = prevSensor;} 
+ /*
 void mouseReleased() { 
-    loop();
-}
+  loop(); 
+} */
