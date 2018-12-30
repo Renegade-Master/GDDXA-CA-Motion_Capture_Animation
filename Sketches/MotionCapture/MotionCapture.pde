@@ -123,6 +123,9 @@ void keyPressed() {
         case 'z':
             
             break;
+        default:
+            
+            break;
     }
     
     switch(key) {
@@ -133,6 +136,9 @@ void keyPressed() {
             if(fRate > 0) {
                 frameRate(fRate -= 1.0);
             }
+            break;
+        default:
+            
             break;
     }
 }

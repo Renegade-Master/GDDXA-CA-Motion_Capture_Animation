@@ -42,8 +42,8 @@ public class PlayerModel {
             r.setFloat("zEnd",row.getFloat(7));
         }
         
-        //  Save the Table for debugging purposes
-        saveTable(this.position, "data/initialPlayerPosition.csv");
+        //  Save the Table for debugging purposes - HIGH OVERHEAD
+        //saveTable(this.position, "data/initialPlayerPosition.csv");
     }
     
     /**
