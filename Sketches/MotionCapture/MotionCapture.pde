@@ -96,8 +96,15 @@ void draw() {
     
     //tgl_pause.draw(null);
 
-    textSize(22);    
-    text("Current Frame: " + (currFrame), width - 220, height - 10);    
+    textSize(25);
+    
+    text("CONTROLS", 15, 30);
+    text("DEBUG", width - 170, 30);
+    textSize(22);
+    text("Speed: 1 - 6", 15, 60);
+    text("Framerate: " + frameRate, width - 170, 60);
+    
+    text("Current Frame: " + currFrame, width - 220, height - 10);    
     text("Data Row: " + dataRow, width - 220, height - 30);
     
     camera.endHUD();
@@ -113,32 +120,28 @@ void draw() {
     }
 }
 
-void keyPressed() {
-    //println(key);
-    
-    switch(key) {
-        case 'a':
-            
+void keyPressed() {    
+    switch(keyCode) {
+        case 49: // 1
+            frameRate(1.0);
             break;
-        case 'z':
-            
+        case 50: // 2
+            frameRate(7.5);
             break;
-        default:
-            
+        case 51: // 3
+            frameRate(15.0);
             break;
-    }
-    
-    switch(key) {
-        case 'a':
-            frameRate(fRate += 1.0);
+        case 52: // 4
+            frameRate(30.0);
             break;
-        case 'z':
-            if(fRate > 0) {
-                frameRate(fRate -= 1.0);
-            }
+        case 53: // 5
+            frameRate(45.0);
+            break;
+        case 54: // 6
+            frameRate(60.0);
             break;
         default:
-            
+            println("Key: '" + keyCode + "/" + key + "' is currently not used.");
             break;
     }
 }
