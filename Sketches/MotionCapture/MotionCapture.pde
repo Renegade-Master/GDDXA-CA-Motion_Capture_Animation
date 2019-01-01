@@ -57,6 +57,7 @@ void setup() {
     
     smooth();
     loop();
+    //noLoop();
     frameRate(fRate);
 }
 
@@ -88,8 +89,21 @@ void draw() {
     
     text("CONTROLS", 15, 30);
     //text("DEBUG", width - 170, 30);
+    text("CALCULATIONS", 15, height - 210);
+    textSize(23.5);
+    text("Z Vector Angle", 15, height - 180);
+    text("Knee Flexion", 15, height - 80);
     textSize(22);
-    text("Speed: " + round(frameRate), 15, 62.5);
+    text("FPS: " + nf(frameRate, 0, 1), 15, 66);
+    
+    text("    Femur: " + nf(plyr.femurL, 0, 2) + "° | " + nf(plyr.femurR, 0, 2) + "°\n"
+       + "    Tibia  : " + nf(plyr.tibiaL, 0, 2) + "° | " + nf(plyr.tibiaR, 0, 2) + "°"
+       , 15, height - 150
+    );    
+    text("    Left     : " + nf(plyr.flexion('l'), 0, 2) + "°\n"
+       + "    Right   : " + nf(plyr.flexion('r'), 0, 2) + "°"
+       , 15, height - 50
+    );
     //text("Framerate: " + frameRate, width - 170, 60);
     
     text("Current Frame: " + currFrame, width - 220, height - 10);    

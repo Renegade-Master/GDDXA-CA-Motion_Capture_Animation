@@ -10,6 +10,11 @@
 \**********************/
 
 public class PlayerModel {
+    public float femurR = 0.0;
+    public float femurL = 0.0;
+    public float tibiaR = 0.0;
+    public float tibiaL = 0.0;
+    
     private Table position;    // The current frame
     private Table nextAnim;    // The next frame
     private float scale = 50;  // Increase the size of the Player Model for displaying
@@ -80,7 +85,7 @@ public class PlayerModel {
             prevSensor = 10577.33325;     // 10576.775 is DEFAULT first SensorID
         }
         
-        dataRow = abs(frame * 23);
+        dataRow = frame * 23;
         //this.toString();
         this.nextAnim = new Table();
         this.position.clearRows();        
@@ -102,8 +107,23 @@ public class PlayerModel {
             }
         }
         //println("Rows in next Animation: " + this.nextAnim.getRowCount());
-        
+        int i = 0;
         for(TableRow row : this.nextAnim.rows()) {
+            switch (i) { 
+                case 2:
+                    this.loadFlexion(i,row.getFloat(8));
+                    break; 
+                case 3:
+                    this.loadFlexion(i,row.getFloat(8));
+                    break; 
+                case 7:
+                    this.loadFlexion(i,row.getFloat(8));
+                    break; 
+                case 8:
+                    this.loadFlexion(i,row.getFloat(8));
+                    break;
+            }
+            
             TableRow r = this.position.addRow();
             r.setInt("Segment",row.getInt(1));
             r.setFloat("xOrigin",row.getFloat(2));
@@ -112,9 +132,47 @@ public class PlayerModel {
             r.setFloat("xEnd",row.getFloat(5));
             r.setFloat("yEnd",row.getFloat(6));
             r.setFloat("zEnd",row.getFloat(7));
+            i++;
         }
         
         this.nextAnim.clearRows();
+    }
+    
+    /**
+    *   ...
+    */
+    private void loadFlexion(int i, float u) {
+        switch (i) { 
+                case 2:
+                    this.femurR = 180 - u;
+                    break; 
+                case 3:
+                    this.tibiaR = u;
+                    break; 
+                case 7:
+                    this.femurL = 180 - u;
+                    break; 
+                case 8:
+                    this.tibiaL = u;
+                    break;
+            }
+    }
+    
+    /**
+    *   ...
+    */
+    public float flexion(char side) {
+        switch(side) {
+            case 'l':
+                return(abs(this.femurL + tibiaL));
+            case 'r':
+                return(abs(this.femurR + tibiaR));
+            default:
+                println("Please enter only 'l' or 'r' to the 'PlayerModel.flexion(char)' function.");
+                break;
+        }
+        
+        return(Float.MAX_VALUE);
     }
     
     /**

@@ -107,15 +107,15 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setCursor(ARROW);
   surface.setTitle("Sketch Window");
-  btn_speedUp = new GButton(this, 240, 40, 40, 40);
+  btn_speedUp = new GButton(this, 650, 40, 40, 40);
   btn_speedUp.setIcon("media-seek-forward-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
   btn_speedUp.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   btn_speedUp.addEventHandler(this, "speedUp");
-  btn_speedDown = new GButton(this, 140, 40, 40, 40);
+  btn_speedDown = new GButton(this, 550, 40, 40, 40);
   btn_speedDown.setIcon("media-seek-forward-symbolic-rtl.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
   btn_speedDown.setLocalColorScheme(GCScheme.RED_SCHEME);
   btn_speedDown.addEventHandler(this, "speedDown");
-  btn_pause = new GButton(this, 190, 40, 40, 40);
+  btn_pause = new GButton(this, 600, 40, 40, 40);
   btn_pause.setIcon("media-playback-start-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
   btn_pause.addEventHandler(this, "pauseAni");
 }
