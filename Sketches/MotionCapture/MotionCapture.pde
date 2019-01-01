@@ -8,10 +8,10 @@
 |  PROGRAM CODE  |
 \****************/
 
-import controlP5.*;
+import g4p_controls.*;
 import peasy.*;
 
-private ControlP5 gui;
+//private ControlP5 gui;
 private PeasyCam camera;
 private Table moveTable;
 private PlayerModel plyr;
@@ -23,13 +23,12 @@ private int dataRow = 0;         // 15732 Data Rows in TOTAL;     0 is FIRST;   
 private float prevSensor = 0.0;  // 10582.47488 is LAST SensorID; 10576.775 is FIRST; 0 is DEFAULT
 private boolean forwards = true;
 private float fRate = 30;
-
-// User Interface buttons
-//private Toggle tgl_pause;
+private int fStep = 3;
+private boolean looping = true;
 
 void setup() {
     size(720, 720, P3D);
-    gui = new ControlP5(this);
+    createGUI();
     camera = new PeasyCam(this, -25, 0, 50, 150);
     camera.rotateX(1.6);
     camera.rotateY(-0.2);
@@ -55,15 +54,7 @@ void setup() {
     }
     
     // Init the Player obj with the first frame
-    plyr = new PlayerModel(newMove);
-    
-    // Create the Graphical User Interface
-    //tgl_pause = new Toggle(gui,null,"tgl_pause",0.0,0.0,0.0,20,20);
-    //gui.addToggle("tgl_pause",0.0,0.0,20,20);
-    //gui.addToggle("toggleValue")
-    //    .setPosition(40,100)
-    //    .setSize(50,20);
-    
+    plyr = new PlayerModel(newMove);    
     
     smooth();
     loop();
@@ -93,16 +84,14 @@ void draw() {
     camera.beginHUD();
     
     fill(255);
-    
-    //tgl_pause.draw(null);
 
     textSize(25);
     
     text("CONTROLS", 15, 30);
-    text("DEBUG", width - 170, 30);
+    //text("DEBUG", width - 170, 30);
     textSize(22);
-    text("Speed: 1 - 6", 15, 60);
-    text("Framerate: " + frameRate, width - 170, 60);
+    text("Speed: " + round(frameRate), 15, 62.5);
+    //text("Framerate: " + frameRate, width - 170, 60);
     
     text("Current Frame: " + currFrame, width - 220, height - 10);    
     text("Data Row: " + dataRow, width - 220, height - 30);
@@ -145,11 +134,3 @@ void keyPressed() {
             break;
     }
 }
-/*
-void mousePressed() { 
-    noLoop();
-} 
-
-void mouseReleased() { 
-    loop();
-}*/
