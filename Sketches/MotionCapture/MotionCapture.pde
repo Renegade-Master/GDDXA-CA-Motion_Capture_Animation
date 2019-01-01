@@ -11,7 +11,6 @@
 import g4p_controls.*;
 import peasy.*;
 
-//private ControlP5 gui;
 private PeasyCam camera;
 private Table moveTable;
 private PlayerModel plyr;
