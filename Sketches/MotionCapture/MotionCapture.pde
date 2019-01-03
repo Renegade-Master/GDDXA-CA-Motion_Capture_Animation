@@ -35,7 +35,7 @@ void setup() {
     camera.setSuppressRollRotationMode();
     
     // Load the table with the .csv file
-    moveTable = loadTable("movement.csv", "header");
+    moveTable = loadTable("data\\movement.csv", "header");
     
     newMove = new Table();
     

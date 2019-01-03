@@ -89,11 +89,11 @@ public void pauseAni(GButton source, GEvent event) { //_CODE_:btn_pause:553315:
   
   if(looping) {
       looping = !looping;
-      btn_pause.setIcon("icons\\media-playback-pause-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
+      btn_pause.setIcon("media-playback-pause-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
       noLoop();
   } else {
       looping = !looping;
-      btn_pause.setIcon("icons\\media-playback-start-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
+      btn_pause.setIcon("media-playback-start-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
       loop();
   }
 } //_CODE_:btn_pause:553315:
