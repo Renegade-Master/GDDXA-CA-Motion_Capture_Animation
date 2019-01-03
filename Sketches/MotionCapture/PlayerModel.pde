@@ -143,19 +143,19 @@ public class PlayerModel {
     */
     private void loadFlexion(int i, float u) {
         switch (i) { 
-                case 2:
-                    this.femurR = 180 - u;
-                    break; 
-                case 3:
-                    this.tibiaR = u;
-                    break; 
-                case 7:
-                    this.femurL = 180 - u;
-                    break; 
-                case 8:
-                    this.tibiaL = u;
-                    break;
-            }
+            case 2:
+                this.femurR = 180 - u;
+                break; 
+            case 3:
+                this.tibiaR = u;
+                break; 
+            case 7:
+                this.femurL = 180 - u;
+                break; 
+            case 8:
+                this.tibiaL = u;
+                break;
+        }
     }
     
     /**

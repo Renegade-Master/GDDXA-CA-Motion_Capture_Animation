@@ -15,87 +15,29 @@
  */
 
 public void speedUp(GButton source, GEvent event) { //_CODE_:btn_speedUp:836498:
-  println("btn_speedUp - GButton >> GEvent." + event + " @ " + millis());
-  
-  if(looping) {
-      if(fStep <= 5) {
-            fStep++;
-            switch(fStep) {
-                case 0: // 1
-                    frameRate(1.0);
-                    break;
-                case 1: // 2
-                    frameRate(7.5);
-                    break;
-                case 2: // 3
-                    frameRate(15.0);
-                    break;
-                case 3: // 4
-                    frameRate(30.0);
-                    break;
-                case 4: // 5
-                    frameRate(45.0);
-                    break;
-                case 5: // 6
-                    frameRate(60.0);
-                    break;
-                default:
-                    println("Key: '" + keyCode + "/" + key + "' is currently not used.");
-                    break;
-            }
-        } else {
-            fStep = 5;
-        }
-    }
+    println("btn_speedUp - GButton >> GEvent." + event + " @ " + millis());
+    
+    incFrameRate();
 } //_CODE_:btn_speedUp:836498:
 
 public void speedDown(GButton source, GEvent event) { //_CODE_:btn_speedDown:546327:
     println("btn_speedDown - GButton >> GEvent." + event + " @ " + millis());
     
-    if(looping) {
-        if(fStep >= 0) {
-            fStep--;  
-            switch(fStep) {
-                case 0: // 1
-                    frameRate(1.0);
-                    break;
-                case 1: // 2
-                    frameRate(7.5);
-                    break;
-                case 2: // 3
-                    frameRate(15.0);
-                    break;
-                case 3: // 4
-                    frameRate(30.0);
-                    break;
-                case 4: // 5
-                    frameRate(45.0);
-                    break;
-                case 5: // 6
-                    frameRate(60.0);
-                    break;
-                default:
-                    println("Key: '" + keyCode + "/" + key + "' is currently not used.");
-                    break;
-            }
-        } else {
-            fStep = 0;
-        }
-    }
+    decFrameRate();
 } //_CODE_:btn_speedDown:546327:
 
 public void pauseAni(GButton source, GEvent event) { //_CODE_:btn_pause:553315:
-  println("btn_pause - GButton >> GEvent." + event + " @ " + millis());
+    println("btn_pause - GButton >> GEvent." + event + " @ " + millis());
   
-  if(looping) {
-      looping = !looping;
-      btn_pause.setIcon("media-playback-pause-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
-      noLoop();
-  } else {
-      looping = !looping;
-      btn_pause.setIcon("media-playback-start-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
-      loop();
-  }
+    if(looping) {
+        looping = !looping;
+        btn_pause.setIcon("media-playback-pause-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
+        noLoop();
+    } else {
+        looping = !looping;
+        btn_pause.setIcon("media-playback-start-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
+        loop();
+    }
 } //_CODE_:btn_pause:553315:
 
 
