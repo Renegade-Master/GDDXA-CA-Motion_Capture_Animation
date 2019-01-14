@@ -55,9 +55,6 @@ public class PlayerModel {
     *   Disply the current animation frame to the screen
     */
     public void render() {
-        //println("Printing out the Character Model...\n");
-        //println("Rows in Plyr Table during Render(): " + this.position.getRowCount());
-        
         strokeWeight(5);
         for(TableRow r : this.position.rows()) {
             stroke(255,255,255);
@@ -95,15 +92,12 @@ public class PlayerModel {
             }
         }
         
-        //dataRow = frame * 23;
-        //this.toString();
         this.nextAnim = new Table();
         this.position.clearRows();        
         
         // Isolate the next frame
         for(TableRow row = moveTable.getRow(dataRow); row.getFloat(0) == prevSensor;) {            
             row = moveTable.getRow(dataRow);
-            //println("Value of dataRow during Render(): " + dataRow);
             if(row.getFloat(0) != prevSensor) {
                 prevSensor = row.getFloat(0);
                 break;
@@ -116,7 +110,7 @@ public class PlayerModel {
                 dataRow--;
             }
         }
-        //println("Rows in next Animation: " + this.nextAnim.getRowCount());
+        
         int i = 0;
         for(TableRow row : this.nextAnim.rows()) {
             switch (i) { 

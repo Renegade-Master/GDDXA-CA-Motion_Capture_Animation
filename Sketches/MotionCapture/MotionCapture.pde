@@ -41,6 +41,8 @@ void setup() {
     camera.rotateY(-0.2);
     camera.rotateZ(-3.0);
     camera.setSuppressRollRotationMode();
+    //camera.setYawRotationMode();
+    camera.setResetOnDoubleClick(false);
     
     // Load the table with the .csv file
     moveTable = loadTable("data\\movement.csv", "header");
@@ -65,8 +67,6 @@ void setup() {
     
     smooth();
     loop();
-    //noLoop();
-    frameRate(fRate);
 }
 
 void draw() {
@@ -120,9 +120,7 @@ void draw() {
        + "    Right   : " + nf(plyr.flexion('r'), 0, 2) + "°"
        , 15, height - 50
     );
-    //text("Framerate: " + frameRate, width - 170, 60);
     
-    //text("Current Frame: " + currFrame, width - 220, height - 10);    
     text("Data Row: " + dataRow, width - 220, height - 30);
     
     camera.endHUD();
