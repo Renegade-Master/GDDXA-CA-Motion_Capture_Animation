@@ -84,18 +84,8 @@ public void setFPS(float value) {
     // Animation plays BACKWARDS
     else if(value < 0.5) {
         forwards = false;
-        value = 1 - value;
-    } 
-    // Animation is PAUSED
-    //else {
-    //    if(looping) {
-    //        looping = !looping;
-    //        noLoop();
-    //    } else {
-    //        looping = !looping;
-    //        loop();
-    //    }
-    //}
+        value = (1 - value);
+    }
     
     frameRate(fRate * value);
 }

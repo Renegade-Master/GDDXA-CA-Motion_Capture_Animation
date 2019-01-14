@@ -17,34 +17,10 @@
 public void sldr_fpsChanged(GSlider source, GEvent event) { //_CODE_:sldr_fpsControl:663526:
     println("sldr_fpsControl - GSlider >> GEvent." + event + " @ " + millis());
     
+    camera.setActive(false);
+    
     setFPS(sldr_fpsControl.getValueF());
     
-    //camera.setActive(false);
-    //float sliderV = sldr_fpsControl.getValueF();
-    
-    //// Animation plays FORWARDS
-    //if(sliderV > 0.5) {
-    //    forwards = true;
-    //}
-    //// Animation plays BACKWARDS
-    //else if(sliderV < 0.5) {
-    //    forwards = false;
-    //    sliderV = 1 - sliderV;
-    //} 
-    //// Animation is PAUSED
-    //else {
-    //    if(looping) {
-    //        looping = !looping;
-    //        noLoop();
-    //    } else {
-    //        looping = !looping;
-    //        loop();
-    //    }
-    //}
-    
-    //frameRate(fRate * sliderV);
-    
-    //camera.setActive(true);
 } //_CODE_:sldr_fpsControl:663526:
 
 

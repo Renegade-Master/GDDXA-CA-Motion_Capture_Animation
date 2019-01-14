@@ -149,3 +149,7 @@ void keyPressed() {
             break;
     }
 }
+
+void mouseReleased() {
+    camera.setActive(true); 
+}
