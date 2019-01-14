@@ -27,6 +27,12 @@ private float fRate = 60;
 private int fStep = 3;
 private boolean looping = true;
 
+// For maintaining a frame
+private PlayerModel plyrLast;
+private int currFrameLast = 0;
+private int dataRowLast = 0;
+private float prevSensorLast = 0.0;
+
 void setup() {
     size(720, 720, P3D);
     createGUI();
@@ -64,6 +70,14 @@ void setup() {
 }
 
 void draw() {
+    
+    if(looping) {
+        plyrLast = plyr;
+        currFrameLast = currFrame;
+        dataRowLast = dataRow;
+        prevSensorLast = prevSensor;
+    }
+    
     //  Reset Animation back to start if end is reached
     if(currFrame == endFrame){ // 683 is DEFAULT last frame
        currFrame = startFrame;    // 0 is DEFAULT first frame
@@ -121,6 +135,13 @@ void draw() {
         plyr.setNextPosition(currFrame++);
     }else {
         plyr.setNextPosition(currFrame--);
+    }
+    
+    if(!looping) {
+        plyr = plyrLast;
+        currFrame = currFrameLast;
+        dataRow = dataRowLast;
+        prevSensor = prevSensorLast;
     }
 }
 
