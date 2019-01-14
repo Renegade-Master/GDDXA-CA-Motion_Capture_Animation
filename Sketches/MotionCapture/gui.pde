@@ -17,25 +17,34 @@
 public void sldr_fpsChanged(GSlider source, GEvent event) { //_CODE_:sldr_fpsControl:663526:
     println("sldr_fpsControl - GSlider >> GEvent." + event + " @ " + millis());
     
-    camera.setActive(false);
+    setFPS(sldr_fpsControl.getValueF());
     
-    if(sldr_fpsControl.getValueF() > 0.5) {
+    //camera.setActive(false);
+    //float sliderV = sldr_fpsControl.getValueF();
     
-    }else if(sldr_fpsControl.getValueF() < 0.5) {
+    //// Animation plays FORWARDS
+    //if(sliderV > 0.5) {
+    //    forwards = true;
+    //}
+    //// Animation plays BACKWARDS
+    //else if(sliderV < 0.5) {
+    //    forwards = false;
+    //    sliderV = 1 - sliderV;
+    //} 
+    //// Animation is PAUSED
+    //else {
+    //    if(looping) {
+    //        looping = !looping;
+    //        noLoop();
+    //    } else {
+    //        looping = !looping;
+    //        loop();
+    //    }
+    //}
     
-    } else {
-        println("Slider is at the middle");
-      
-        if(looping) {
-            looping = !looping;
-            noLoop();
-        } else {
-            looping = !looping;
-            loop();
-        }
-    }
+    //frameRate(fRate * sliderV);
     
-    camera.setActive(true);
+    //camera.setActive(true);
 } //_CODE_:sldr_fpsControl:663526:
 
 
@@ -51,7 +60,7 @@ public void createGUI(){
   sldr_fpsControl.setShowValue(true);
   sldr_fpsControl.setShowLimits(true);
   sldr_fpsControl.setLimits(0.5, 0.0, 1.0);
-  sldr_fpsControl.setNbrTicks(11);
+  sldr_fpsControl.setNbrTicks(15);
   sldr_fpsControl.setStickToTicks(true);
   sldr_fpsControl.setShowTicks(true);
   sldr_fpsControl.setNumberFormat(G4P.DECIMAL, 1);

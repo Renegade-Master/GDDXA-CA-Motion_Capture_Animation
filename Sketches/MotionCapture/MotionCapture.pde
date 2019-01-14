@@ -20,8 +20,10 @@ private Table newMove;
 private int currFrame = 0;       // 684 Frames in TOTAL;          0 is FIRST;         0 is DEFAULT
 private int dataRow = 0;         // 15732 Data Rows in TOTAL;     0 is FIRST;         0 is DEFAULT
 private float prevSensor = 0.0;  // 10582.47488 is LAST SensorID; 10576.775 is FIRST; 0 is DEFAULT
+private int startFrame = 66;
+private int endFrame = 594;
 private boolean forwards = true;
-private float fRate = 30;
+private float fRate = 60;
 private int fStep = 3;
 private boolean looping = true;
 
@@ -63,8 +65,8 @@ void setup() {
 
 void draw() {
     //  Reset Animation back to start if end is reached
-    if(currFrame == 594){ // 683 is DEFAULT last frame
-       currFrame = 66;    // 0 is DEFAULT first frame
+    if(currFrame == endFrame){ // 683 is DEFAULT last frame
+       currFrame = startFrame;    // 0 is DEFAULT first frame
     }
     
     fill(255);
@@ -106,7 +108,7 @@ void draw() {
     );
     //text("Framerate: " + frameRate, width - 170, 60);
     
-    text("Current Frame: " + currFrame, width - 220, height - 10);    
+    //text("Current Frame: " + currFrame, width - 220, height - 10);    
     text("Data Row: " + dataRow, width - 220, height - 30);
     
     camera.endHUD();

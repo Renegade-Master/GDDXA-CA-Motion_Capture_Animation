@@ -73,3 +73,29 @@ public void decFrameRate() {
         }
     }    
 }
+
+public void setFPS(float value) {
+    value = sldr_fpsControl.getValueF();
+    
+    // Animation plays FORWARDS
+    if(value > 0.5) {
+        forwards = true;
+    }
+    // Animation plays BACKWARDS
+    else if(value < 0.5) {
+        forwards = false;
+        value = 1 - value;
+    } 
+    // Animation is PAUSED
+    //else {
+    //    if(looping) {
+    //        looping = !looping;
+    //        noLoop();
+    //    } else {
+    //        looping = !looping;
+    //        loop();
+    //    }
+    //}
+    
+    frameRate(fRate * value);
+}

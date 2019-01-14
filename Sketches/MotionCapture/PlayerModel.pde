@@ -80,18 +80,28 @@ public class PlayerModel {
     *   Sets the Animation to a new set of points
     */
     public void setNextPosition(int frame) {
-        // Reset the animation if the end has been reached
-        if(prevSensor == 10581.73325) { // 10582.47488 is DEFAULT last SensorID
-            prevSensor = 10577.33325;     // 10576.775 is DEFAULT first SensorID
+        if(forwards) {
+            // Reset the animation if the end has been reached
+            if(prevSensor == 10581.73325) { // 10582.47488 is DEFAULT last SensorID
+                prevSensor = 10577.33325;     // 10576.775 is DEFAULT first SensorID
+                dataRow = startFrame * 23;
+            }
+        }
+        else {
+            // Reset the animation if the end has been reached
+            if(prevSensor == 10577.33325) { // 10576.775 is DEFAULT first SensorID
+                prevSensor = 10581.73325;     // 10582.47488 is DEFAULT last SensorID
+                dataRow = endFrame * 23;
+            }
         }
         
-        dataRow = frame * 23;
+        //dataRow = frame * 23;
         //this.toString();
         this.nextAnim = new Table();
         this.position.clearRows();        
         
         // Isolate the next frame
-        for(TableRow row = moveTable.getRow(dataRow); row.getFloat(0) == prevSensor;) {
+        for(TableRow row = moveTable.getRow(dataRow); row.getFloat(0) == prevSensor;) {            
             row = moveTable.getRow(dataRow);
             //println("Value of dataRow during Render(): " + dataRow);
             if(row.getFloat(0) != prevSensor) {
@@ -178,6 +188,7 @@ public class PlayerModel {
     /**
     *   Displays all of the points currently in use by the Animation
     */
+    @Override
     public String toString() {    
         for (TableRow row : this.position.rows()) {
             int segment = row.getInt(0);
