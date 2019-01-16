@@ -24,7 +24,6 @@ private int startFrame = 66;
 private int endFrame = 594;
 private boolean forwards = true;
 private float fRate = 60;
-private int fStep = 3;
 private boolean looping = true;
 
 // For maintaining a frame
@@ -145,24 +144,24 @@ void draw() {
 
 void keyPressed() {    
     switch(keyCode) {
-        case 49: // 1
-            frameRate(1.0);
-            break;
-        case 50: // 2
-            frameRate(7.5);
-            break;
-        case 51: // 3
-            frameRate(15.0);
-            break;
-        case 52: // 4
-            frameRate(30.0);
-            break;
-        case 53: // 5
-            frameRate(45.0);
-            break;
-        case 54: // 6
-            frameRate(60.0);
-            break;
+        //case 49: // 1
+        //    frameRate(1.0);
+        //    break;
+        //case 50: // 2
+        //    frameRate(7.5);
+        //    break;
+        //case 51: // 3
+        //    frameRate(15.0);
+        //    break;
+        //case 52: // 4
+        //    frameRate(30.0);
+        //    break;
+        //case 53: // 5
+        //    frameRate(45.0);
+        //    break;
+        //case 54: // 6
+        //    frameRate(60.0);
+        //    break;
         default:
             println("Key: '" + keyCode + "/" + key + "' is currently not used.");
             break;

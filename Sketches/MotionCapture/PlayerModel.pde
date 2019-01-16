@@ -111,20 +111,23 @@ public class PlayerModel {
             }
         }
         
-        int i = 0;
+        int i;
+        if(forwards) {i = 0;}
+        else {i = 22;}
+        
         for(TableRow row : this.nextAnim.rows()) {
             switch (i) { 
                 case 2:
-                    this.loadFlexion(i,row.getFloat(8));
+                    this.loadFlexion(i,row.getFloat(10));
                     break; 
                 case 3:
-                    this.loadFlexion(i,row.getFloat(8));
+                    this.loadFlexion(i,row.getFloat(10));
                     break; 
                 case 7:
-                    this.loadFlexion(i,row.getFloat(8));
+                    this.loadFlexion(i,row.getFloat(10));
                     break; 
                 case 8:
-                    this.loadFlexion(i,row.getFloat(8));
+                    this.loadFlexion(i,row.getFloat(10));
                     break;
             }
             
@@ -136,7 +139,9 @@ public class PlayerModel {
             r.setFloat("xEnd",row.getFloat(5));
             r.setFloat("yEnd",row.getFloat(6));
             r.setFloat("zEnd",row.getFloat(7));
-            i++;
+            
+            if(forwards) {i++;}
+            else {i--;}
         }
         
         this.nextAnim.clearRows();
@@ -168,9 +173,9 @@ public class PlayerModel {
     public float flexion(char side) {
         switch(side) {
             case 'l':
-                return(abs(this.femurL + tibiaL));
+                return(abs(this.femurL - tibiaL));
             case 'r':
-                return(abs(this.femurR + tibiaR));
+                return(abs(this.femurR - tibiaR));
             default:
                 println("Please enter only 'l' or 'r' to the 'PlayerModel.flexion(char)' function.");
                 break;
