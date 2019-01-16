@@ -76,7 +76,7 @@ public class PlayerModel {
     /**
     *   Sets the Animation to a new set of points
     */
-    public void setNextPosition(int frame) {
+    public void setNextPosition() {
         if(forwards) {
             // Reset the animation if the end has been reached
             if(prevSensor == 10581.73325) { // 10582.47488 is DEFAULT last SensorID
@@ -92,6 +92,7 @@ public class PlayerModel {
             }
         }
         
+        // Reset this Model's position data
         this.nextAnim = new Table();
         this.position.clearRows();        
         
@@ -115,6 +116,7 @@ public class PlayerModel {
         if(forwards) {i = 0;}
         else {i = 22;}
         
+        // Extract Knee Flexion data rows
         for(TableRow row : this.nextAnim.rows()) {
             switch (i) { 
                 case 2:
@@ -131,6 +133,7 @@ public class PlayerModel {
                     break;
             }
             
+            // Set this Model position data to next position
             TableRow r = this.position.addRow();
             r.setInt("Segment",row.getInt(1));
             r.setFloat("xOrigin",row.getFloat(2));
@@ -140,6 +143,7 @@ public class PlayerModel {
             r.setFloat("yEnd",row.getFloat(6));
             r.setFloat("zEnd",row.getFloat(7));
             
+            // If forwards: proceed to next line; if not: go to previous line
             if(forwards) {i++;}
             else {i--;}
         }
@@ -148,7 +152,7 @@ public class PlayerModel {
     }
     
     /**
-    *   ...
+    *   Apply the appropriate conversion to the Flexion data before use.
     */
     private void loadFlexion(int i, float u) {
         switch (i) { 
@@ -168,7 +172,7 @@ public class PlayerModel {
     }
     
     /**
-    *   ...
+    *   Calculate the Left and Right Knee Flexion.
     */
     public float flexion(char side) {
         switch(side) {
@@ -178,38 +182,26 @@ public class PlayerModel {
                 return(abs(this.femurR - tibiaR));
             default:
                 println("Please enter only 'l' or 'r' to the 'PlayerModel.flexion(char)' function.");
-                break;
+                return(Float.MAX_VALUE);
         }
-        
-        return(Float.MAX_VALUE);
     }
     
     /**
-    *   Displays all of the points currently in use by the Animation
+    *   Displays all of the points currently in use by the Animation.
     */
     @Override
-    public String toString() {    
+    public String toString() { 
+        StringBuilder sb = new StringBuilder();
         for (TableRow row : this.position.rows()) {
-            int segment = row.getInt(0);
-            float xOrig = row.getFloat(1);
-            float yOrig = row.getFloat(2);
-            float zOrig = row.getFloat(3);
-            float xEnd = row.getFloat(4);
-            float yEnd = row.getFloat(5);
-            float zEnd = row.getFloat(6);
-                
-            println(
-                "\nSegment: " + segment
-              + "\nOrigin X: " + xOrig
-              + "\nOrigin Y: " + yOrig
-              + "\nOrigin Z: " + zOrig
-              + "\nEnd X: " + xEnd
-              + "\nEnd Y: " + yEnd
-              + "\nEnd Z: " + zEnd
-            );
+            sb.append("\nSegment: ").append(row.getInt(0));
+            sb.append("\nOrigin X: ").append(row.getInt(1));
+            sb.append("\nOrigin Y: ").append(row.getInt(2));
+            sb.append("\nOrigin Z: ").append(row.getInt(3));
+            sb.append("\nEnd X: ").append(row.getInt(4));
+            sb.append("\nEnd Y: ").append(row.getInt(5));
+            sb.append("\nEnd Z: ").append(row.getInt(6)).append("\n");
         }
         
-        //  Lazy patch
-        return(null);
+        return(sb.toString());
     }
 }
