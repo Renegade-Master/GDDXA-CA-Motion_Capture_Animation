@@ -17,7 +17,6 @@ private PlayerModel plyr;
 private Table newMove;
 
 // Global Variables
-//private int currFrame = 0;       // 684 Frames in TOTAL;          0 is FIRST;         0 is DEFAULT
 private int dataRow = 0;         // 15732 Data Rows in TOTAL;     0 is FIRST;         0 is DEFAULT
 private float prevSensor = 0.0;  // 10582.47488 is LAST SensorID; 10576.775 is FIRST; 0 is DEFAULT
 private int startFrame = 66;
