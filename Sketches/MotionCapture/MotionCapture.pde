@@ -121,11 +121,8 @@ void draw() {
     * Manipulate the shapes *
     \****---------------****/
     
-    if(forwards) {
-        plyr.setNextPosition();
-    }else {
-        plyr.setNextPosition();
-    }
+   
+    plyr.setNextPosition();
     
     if(!looping) {
         plyr = plyrLast;
