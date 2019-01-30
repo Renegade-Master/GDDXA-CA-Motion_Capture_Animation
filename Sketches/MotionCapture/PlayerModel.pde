@@ -17,10 +17,12 @@ public class PlayerModel {
     
     private Table position;    // The current frame
     private Table nextAnim;    // The next frame
-    private float scale = 50;  // Increase the size of the Player Model for displaying
+    private float scale = 50;  // Increase the size of 
+                               // the Player Model for displaying
     
     /**
-    *   Constructor uses a set of rows to initally load up the Animation
+    *   Constructor uses a set of rows to initally load up
+    *   the Animation
     */
     PlayerModel(Table origPos) {
         this.position = new Table();
@@ -58,7 +60,7 @@ public class PlayerModel {
         strokeWeight(5);
         for(TableRow r : this.position.rows()) {
             stroke(255,255,255);
-            //stroke(random(0, 255),random(0, 255),random(0, 255));
+            
             line(r.getFloat(1) * scale,r.getFloat(2) * scale,r.getFloat(3) * scale,
                  r.getFloat(4) * scale,r.getFloat(5) * scale,r.getFloat(6) * scale);
             
@@ -70,7 +72,6 @@ public class PlayerModel {
             sphere(1);
             translate(-r.getFloat(4) * scale,-r.getFloat(5) * scale,-r.getFloat(6) * scale);
         }
-        //this.readTable(this.position);
     }
     
     /**

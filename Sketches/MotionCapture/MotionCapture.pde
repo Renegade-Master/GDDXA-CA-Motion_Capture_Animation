@@ -116,11 +116,11 @@ void draw() {
     text("Data Row: " + dataRow, width - 220, height - 30);
     
     camera.endHUD();
+    
         
     /****---------------****\
     * Manipulate the shapes *
     \****---------------****/
-    
    
     plyr.setNextPosition();
     
