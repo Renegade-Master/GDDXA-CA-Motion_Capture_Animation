@@ -30,6 +30,9 @@ private PlayerModel plyrLast;
 private int dataRowLast = 0;
 private float prevSensorLast = 0.0;
 
+/**
+*   Setup program data containers.
+*/
 void setup() {
     size(720, 720, P3D);
     createGUI();
@@ -60,13 +63,13 @@ void setup() {
     
     // Init the Player obj with the first frame
     plyr = new PlayerModel(newMove);
-    //println(plyr.toString());
     
     smooth();
     loop();
 }
 
 /**
+*   Draw to the screen.
 */
 void draw() {
     
@@ -131,6 +134,9 @@ void draw() {
     }
 }
 
+/**
+*   Print the currently pressed key/button.
+*/
 void keyPressed() {    
     switch(keyCode) {
         default:
@@ -139,6 +145,9 @@ void keyPressed() {
     }
 }
 
+/**
+*   Reset the camera to active when the mouse is released.
+*/
 void mouseReleased() {
     camera.setActive(true); 
 }

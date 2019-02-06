@@ -26,17 +26,18 @@ public void sldr_fpsChanged(GSlider source, GEvent event) { //_CODE_:sldr_fpsCon
 public void btn_onPauseClick(GButton source, GEvent event) { //_CODE_:btn_pause:392439:
     //println("btn_pause - GButton >> GEvent." + event + " @ " + millis());
     if(millis() > 5000) {  
-        if(looping) {
-            looping = !looping; // False
+        if(looping) { // If TRUE set to FALSE
+            looping = !looping;
             btn_pause.setIcon("media-playback-pause-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
             btn_pause.setLocalColorScheme(GCScheme.RED_SCHEME);
-        } else {
+        } else { // If FALSE set to TRUE
             looping = !looping; // True
             btn_pause.setIcon("media-playback-start-symbolic.symbolic.png", 1, GAlign.NORTH, GAlign.CENTER, GAlign.MIDDLE);
             btn_pause.setLocalColorScheme(GCScheme.GREEN_SCHEME);
         }
     }
     else {
+        // Allpw the program to generate sufficient data before playing with it.
         println("WARNING: Please wait until 5 seconds have elapsed before attempting to pause.");    
     }
     
